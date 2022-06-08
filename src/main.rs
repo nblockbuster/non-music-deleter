@@ -18,11 +18,11 @@ fn main() {
             let entry = entry.unwrap();
             let path:String = entry.path().display().to_string();
             let stem:String = Path::new(& path).file_stem().unwrap().to_str().unwrap().to_string();
-        if !line.contains(&stem.as_str()) {
-            println!("Removed {}.", stem);
-            std::fs::remove_file(path).unwrap();
+            if !line.contains(&stem.as_str()) && stem.len() == 8 {
+                println!("Removed {}.", stem);
+                std::fs::remove_file(path).unwrap();
+            }
         }
-    }
     });
     thread.join().unwrap();
 }
